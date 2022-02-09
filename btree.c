@@ -7,24 +7,22 @@
 #include "string.h"
 #include "const.h"
 #include "btree.h"
-#include "file.h"
+#include "tree.h"
 
 int main(int argc, char **argv){
     printf("Welcome to b+ tree!\n");
     char *line = NULL;
     size_t len = 0;
     ssize_t lineSize = 0;
-    int finished = CONST_FALSE;
+    int finished = CONST_OK;
     int i;
-    file *f;
+    tree *t;
 
     for (i = 0; i < argc - 1; i += 2) {
 
     }
 
-    f = open_file("/Users/changsongli/Desktop/Jason/C/GitHub/b-plus-tree/btree-data", 10);
-    insert_num(f, 30);
-    read_num(f);
+    t = create_tree("/Users/changsongli/Desktop/Jason/C/GitHub/b-plus-tree/btree-data", 10);
     do {
         lineSize = getline(&line, &len, stdin);
         if (lineSize > 0) {
@@ -40,12 +38,12 @@ int main(int argc, char **argv){
         }else if (strncasecmp(line, "help", 4) == 0) {
             print_manual();
         }else if (strcasecmp(line, "exit") == 0) {
-            finished = CONST_TRUE;
+            finished = CONST_NOT_OK;
         }else {
             printf("Invalid command, type help for instructions.\n");
         }
 
-    }while(finished == CONST_FALSE);
+    }while(finished == CONST_OK);
 
     free(line);
 

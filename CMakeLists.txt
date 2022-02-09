@@ -3,5 +3,5 @@ project(b_plus_tree C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(b_plus_tree btree.c file.h file.c btree.h)
+add_executable(b_plus_tree btree.c tree.c node.c)
 
