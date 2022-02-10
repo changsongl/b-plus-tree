@@ -8,12 +8,12 @@
 #ifndef B_PLUS_TREE_TREE_H
 #define B_PLUS_TREE_TREE_H
 
-typedef struct tree {
+typedef struct Tree {
     FILE *fptr;
     int order;
-    metadata *m;
-} tree;
+    Metadata *m;
+} Tree;
 
-tree* create_tree(char *path, int order);
+Tree* create_tree(char *path, int order);
 
 #endif //B_PLUS_TREE_TREE_H

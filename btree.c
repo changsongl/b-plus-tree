@@ -10,19 +10,19 @@
 #include "tree.h"
 
 int main(int argc, char **argv){
-    printf("Welcome to b+ tree!\n");
+    printf("Welcome to b+ Tree!\n");
     char *line = NULL;
     size_t len = 0;
     ssize_t lineSize = 0;
     int finished = CONST_OK;
     int i;
-    tree *t;
+    Tree *t;
 
     for (i = 0; i < argc - 1; i += 2) {
 
     }
 
-    t = create_tree("/Users/changsongli/Desktop/Jason/C/GitHub/b-plus-tree/btree-data", 10);
+    t = create_tree("/Users/changsongli/Desktop/Jason/C/GitHub/b-plus-Tree/btree-data", 10);
     do {
         lineSize = getline(&line, &len, stdin);
         if (lineSize > 0) {
@@ -51,9 +51,9 @@ int main(int argc, char **argv){
 }
 
 void print_manual() {
-    printf("add  : insert number to b+ tree.\n");
-    printf("del  : delete number to b+ tree.\n");
-    printf("size : print size of b+ tree.\n");
+    printf("add  : insert number to b+ Tree.\n");
+    printf("del  : delete number to b+ Tree.\n");
+    printf("size : print size of b+ Tree.\n");
     printf("help : print instructions.\n");
     printf("exit : quit the program.\n");
 }

@@ -7,15 +7,17 @@
 #include "const.h"
 #include "node.h"
 
-int init_tree(tree *t) {
+int init_tree(Tree *t) {
     // check file is empty
-    long size;
+    long fileSize;
+    Metadata *m;
+    NodeManager *manager;
     int result = CONST_OK;
-    metadata *m;
 
     fseek(t->fptr, 0L, SEEK_END);
-    size = ftell(t->fptr);
-    if (size == 0) {
+    fileSize = ftell(t->fptr);
+
+    if (fileSize == 0) {
         m = create_metadata(t->fptr, t->order);
     }else {
         m = load_metadata(t->fptr);
@@ -28,17 +30,26 @@ int init_tree(tree *t) {
     t->m = m;
 
     if (t->order != m->order) {
-        printf("warning: the order of tree is %d, instead of %d\n", m->order, t->order);
+        printf("warning: the order of Tree is %d, instead of %d\n", m->order, t->order);
     }
     t->order = m->order;
 
+    manager = create_node_manager(m->rootPos, t->order);
+    if (manager == NULL) {
+        return CONST_NOT_OK;
+    }
 
-    return CONST_OK;
+    if (fileSize == 0) {
+        result = write_node(manager, t->fptr);
+    }
+
+
+    return result;
 }
 
-tree* create_tree(char *path, int order) {
+Tree* create_tree(char *path, int order) {
     FILE *fptr;
-    tree *t;
+    Tree *t;
     int result;
 
     fptr = fopen(path, "ab+");
@@ -47,15 +58,13 @@ tree* create_tree(char *path, int order) {
         return NULL;
     }
 
-    t = malloc(sizeof(tree));
+    t = malloc(sizeof(Tree));
     t->fptr = fptr;
     t->order = order;
 
-//    m = malloc(sizeof(metadata));
-
     result = init_tree(t);
     if (result != CONST_OK) {
-        fprintf(stderr, "Cannot init tree: %s. (%d)\n", path, result);
+        fprintf(stderr, "Cannot init Tree: %s. (%d)\n", path, result);
         return NULL;
     }
 
