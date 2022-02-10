@@ -51,34 +51,3 @@ metadata* load_metadata(FILE* f){
 
     return m;
 }
-
-
-//int insert_num(file *f, void node, int loc) {
-//    size_t size;
-//    int suc;
-//    suc = fseek(f->fptr, loc, SEEK_SET);
-//    if (suc != 0) {
-//        return CONST_OK;
-//    }
-//
-//    size = fwrite(&node, sizeof(node), 3, f->fptr);
-//    if (size != 1){
-//        return CONST_OK;
-//    }
-//
-//    return CONST_NOT_OK;
-//}
-//
-//int read_num(file *f) {
-//    int suc;
-//    int num;
-//    suc = fseek(f->fptr, sizeof(int)*2, SEEK_SET);
-//    if (suc != 0) {
-//        return CONST_OK;
-//    }
-//
-//    fread(&num, sizeof(int), 1, f->fptr);
-//    printf("%d\n", num);
-//
-//    return CONST_NOT_OK;
-//}
