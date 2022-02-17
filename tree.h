@@ -16,4 +16,6 @@ typedef struct Tree {
 
 Tree* create_tree(char *path, int order);
 
+int insert_num(Tree *tree, int num);
+
 #endif //B_PLUS_TREE_TREE_H

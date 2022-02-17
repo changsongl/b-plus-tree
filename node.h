@@ -12,6 +12,7 @@
 typedef struct Metadata {
     int rootPos;
     int order;
+    int size;
 } Metadata;
 
 Metadata* create_metadata(FILE* f, int order);
@@ -38,5 +39,7 @@ Node* create_node(int order);
 int write_node(NodeManager* node, FILE* f);
 
 int load_node(NodeManager* node, FILE* f);
+
+int is_leaf(NodeManager *n);
 
 #endif //B_PLUS_TREE_NODE_H

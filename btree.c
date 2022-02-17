@@ -30,7 +30,7 @@ int main(int argc, char **argv){
         }
 
         if (strncasecmp(line, "add", 3) == 0) {
-//            insert_num(f, 3);
+            insert_num(t, 3);
         }else if (strncasecmp(line, "del", 3) == 0) {
             printf("del\n");
         }else if (strncasecmp(line, "size", 4) == 0) {

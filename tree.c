@@ -70,3 +70,26 @@ Tree* create_tree(char *path, int order) {
 
     return t;
 }
+
+int insert_num(Tree *tree, int num) {
+    NodeManager *n;
+    int pos = sizeof(Metadata);
+    int result;
+
+    // save path for node splits
+
+    do {
+        n = create_node_manager(pos, tree->order);
+        if (n == NULL) {
+            return CONST_NOT_OK;
+        }
+
+        result = load_node(n, tree->fptr);
+        if (result == CONST_NOT_OK) {
+            return CONST_NOT_OK;
+        }
+
+    } while (is_leaf(n) == CONST_FALSE);
+
+    return CONST_OK;
+}

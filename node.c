@@ -19,6 +19,7 @@ Metadata* create_metadata(FILE* f, int order){
     m = malloc(metaSize);
     m->order = order;
     m->rootPos = (int)metaSize;
+    m->size = 0;
 
     result = fseek(f, 0L, SEEK_SET);
     if (result != CONST_OK) {
@@ -166,4 +167,12 @@ int load_node(NodeManager* node, FILE* f) {
     }
 
     return CONST_OK;
+}
+
+int is_leaf(NodeManager *n) {
+    if (n->node->leaf == NODE_LEAF){
+        return CONST_TRUE;
+    }
+
+    return CONST_FALSE;
 }
